@@ -1,7 +1,7 @@
 <template>
   <div>
     <mu-back-top :bottom="80" :right="15" :duration="1000">
-        <mu-float-button icon="arrow_upward"/>
+      <mu-float-button icon="arrow_upward" />
     </mu-back-top>
     <mu-tabs :value="activeTab" @change="handleTabChange">
       <mu-tab value="topics" icon="phone" title="RECENTS" />
@@ -10,100 +10,221 @@
     </mu-tabs>
     <div v-if="activeTab === 'topics'" class="content">
       <mu-card v-for="(item,k) in topics" :key="k">
-            <mu-card-header title="Myron Avatar" subTitle="sub title">
-              <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
-            </mu-card-header>
-            <mu-card-media title="Image Title" subTitle="Image Sub Title">
-              <img src="https://placeimg.com/244/132/any?id=42" />
-            </mu-card-media>
-            <mu-card-title title="Content Title" subTitle="Content Title" />
-            <mu-card-text>
-              散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。 调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。 似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光， 找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！
-            </mu-card-text>
-            <mu-card-actions>
-              <mu-flat-button label="Action 1" />
-              <mu-flat-button label="Action 2" />
-            </mu-card-actions>
-        </mu-card>
+        <mu-card-header title="Myron Avatar" subTitle="sub title">
+          <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+          <mu-flat-button label="关注" style="float:right" />
+        </mu-card-header>
+        <mu-card-text>
+          散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
+        </mu-card-text>
+        <!-- <mu-card-media title="Image Title" subTitle="Image Sub Title"> -->
+        <mu-flexbox class="">
+          <mu-flexbox-item class="">
+            <img src="https://placeimg.com/244/132/any?id=1" />
+          </mu-flexbox-item>
+          <mu-flexbox-item class="">
+            <img src="https://placeimg.com/244/132/any?id=3" />
+          </mu-flexbox-item>
+        </mu-flexbox>
+        <!-- </mu-card-media> -->
+        <mu-card-actions class="action-flat-button-container">
+          <mu-flexbox>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button label="123" class="demo-flat-button" icon="thumb_up" style="outline" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button label="文字在前面" class="action-flat-button" icon="favorite_border" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button label='1312' class="action-flat-button" icon="chat" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button class="action-flat-button" icon="open_in_new" />
+            </mu-flexbox-item>
+          </mu-flexbox>
+        </mu-card-actions>
+      </mu-card>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-  
     data() {
-  
       return {
-  
-        activeTab: 'topics',
-  
-        topics: [
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-          {id: '1',name: '2',title: 3},
-        ]
-  
-      }
-  
-    },  
-    methods: {
-  
-      handleTabChange(val) {
-  
-        this.activeTab = val
-  
-      }
-     
-  
-    }
-  
-  }
-</script>
-<style  lang="less">
+        activeTab: "topics",
 
-.mu-card-header-title{
-  float:left;
-}
+        topics: [{
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          },
+          {
+            id: "1",
+            name: "2",
+            title: 3
+          }
+        ]
+      };
+    },
+    methods: {
+      handleTabChange(val) {
+        this.activeTab = val;
+      }
+    }
+  };
+
+</script>
+<style lang="less">
+  .mu-card-header-title {
+    float: left;
+  }
+
 </style>
 <style scoped lang="less">
   .mu-tabs {
     position: fixed;
     top: 0;
   }
-  .content{
+
+  .content {
     background-color: #efebe9;
-    margin: 77px 0px;
+    margin: 0px 0px;
   }
-  .mu-card{
+
+  .mu-card {
     margin-bottom: 15px;
   }
-  .mu-card-header{
+
+  .mu-card-header {
     overflow: hidden;
+    padding-right: 0px;
   }
-  .mu-avatar{
-    float:left;
+
+  .mu-avatar {
+    float: left;
   }
-.mu-card-header-title{
-  float:left;
-}
+
+  .mu-card-header-title {
+    float: left;
+  }
+      .mu-flexbox{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .mu-flexbox-item img{
+        max-width: 100%;
+        height: auto;
+    }
+
+  .action-flat-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .action-flat-button {
+    margin: 12px;
+  }
+
 </style>
