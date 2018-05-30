@@ -8,6 +8,7 @@ import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
 
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -46,3 +47,4 @@ export default new Router({
 
   ]
 })
+

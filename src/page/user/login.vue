@@ -4,13 +4,13 @@
       <mu-icon-button icon="close" slot="right" />
     </mu-appbar>
     <mu-paper>
-      <mu-text-field label="手机号或Email" hintText="11位手机号或Email" type="password" labelFloat :underlineShow="false" />
+      <mu-text-field   v-model="email" label="手机号或Email" hintText="11位手机号或Email" type="text" labelFloat :underlineShow="false" />
       <mu-divider/>
-      <mu-text-field label="密码" hintText="不少于6位密码" type="password" labelFloat :underlineShow="false" />
+      <mu-text-field    v-model="password" label="密码" hintText="不少于6位密码" type="password" labelFloat :underlineShow="false" />
       <mu-divider/>
     </mu-paper>
     <div style="width:100%;text-align:center;margin:20px;">
-    <mu-raised-button label="登录" class="demo-raised-button" backgroundColor="#009a61" fullWidth />
+    <mu-raised-button label="登录" class="demo-raised-button" backgroundColor="#009a61" fullWidth @click="login()" />
     </div>
     <mu-divider/>
     <div class="more-login-area">
@@ -31,14 +31,58 @@
     <div style="text-align:center;width:100%;margin:20px;">
     <mu-raised-button  class="demo-raised-button" to="/register"  >注册新账号</mu-raised-button>
     </div>
+      <mu-dialog :open="dialog" title="">
+        {{error}}
+    <mu-flat-button label="确定" slot="actions" primary @click="close"/>
+  </mu-dialog>
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-
+          email:'',
+          password:'',
+          login_type:'',
+          user_Datas:{},
+          dialog: false,
+          error:''
       }
+    },
+    methods:{
+      login(){
+        this.getlogintype();
+        this.$auth.login({
+          params:{
+            email:this.email,
+            password:this.password,
+          },
+          success:function(){},
+          error: function () {},
+          rememberMe: true,
+          redirect: '/home',
+          fetchUser: false,
+        })
+      },
+      getlogintype(){
+        var reg_phone=/^1[345678][0-9]{9}/;
+        var reg_email = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+        if(reg_phone.test(this.email)){
+            this.login_type="phone";
+        }else if(reg_phone.test(this.phone)){
+            this.login_type='email';
+        }else{
+              this.error="请输入正确的手机号或邮箱!"
+              this.open(); 
+        }
+      },
+       open () {
+      this.dialog = true
+    },
+    close () {
+      this.dialog = false
+    }
+
     }
   }
 

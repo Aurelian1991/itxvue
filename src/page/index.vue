@@ -3,9 +3,10 @@
 <router-view></router-view>
 <mu-paper class="Bottom-Nav-Class">
   <mu-bottom-nav :value="bottomNav" @change="handleChange">
-    <mu-bottom-nav-item value="recents" title="Recents" icon="restore" to="/home"/>
+    <mu-bottom-nav-item value="recents" title="主页" icon="restore" to="/home"/>
     <mu-bottom-nav-item value="favorites" title="Favorites" icon="favorite" to="/home"/>
-    <mu-bottom-nav-item value="nearby" title="Nearby" icon="location_on" to="/login"/>
+    <mu-bottom-nav-item value="favorites" title="更多" icon="favorite" to="/home"/>
+    <mu-bottom-nav-item value="nearby" title="我的" icon="location_on" to="/login"/>
   </mu-bottom-nav>
 </mu-paper>
 </div>

@@ -3,11 +3,20 @@
     <mu-back-top :bottom="80" :right="15" :duration="1000">
       <mu-float-button icon="arrow_upward" />
     </mu-back-top>
-    <mu-tabs :value="activeTab" @change="handleTabChange">
+    <!-- <mu-tabs :value="activeTab" @change="handleTabChange">
       <mu-tab value="topics" icon="phone" title="RECENTS" />
       <mu-tab value="articles" icon="favorite" title="FAVORITES" />
       <mu-tab value="tab3" icon="person_pin" title="NEARBY" />
-    </mu-tabs>
+    </mu-tabs> -->
+    <mu-appbar style="width: 100%;" color="">
+      <mu-button icon slot="left">
+        <mu-icon value="search"></mu-icon>
+      </mu-button>
+      爱偷闲
+      <mu-button flat slot="right" color="success">
+         <mu-icon value="create"></mu-icon>
+      </mu-button>
+    </mu-appbar>
     <div v-if="activeTab === 'topics'" class="content">
       <mu-card v-for="(item,k) in topics" :key="k">
         <mu-card-header title="Myron Avatar" subTitle="sub title">
@@ -208,14 +217,16 @@
   .mu-card-header-title {
     float: left;
   }
-      .mu-flexbox{
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-    .mu-flexbox-item img{
-        max-width: 100%;
-        height: auto;
-    }
+
+  .mu-flexbox {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mu-flexbox-item img {
+    max-width: 100%;
+    height: auto;
+  }
 
   .action-flat-button-container {
     display: flex;

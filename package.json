@@ -13,11 +13,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.21.11-beta",
     "appium-chromedriver": "^4.0.0",
+    "axios": "^0.18.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "muse-ui": "^2.1.0",
     "vue": "^2.5.2",
+    "vue-axios": "^2.1.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
