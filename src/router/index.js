@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import store from '@/store/store'
 import Home from '@/page/home/Home'
 import Login from '@/page/user/login'
 import Register from '@/page/user/register'
@@ -11,8 +12,7 @@ import User from '@/page/user/index'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [{
+ const routes= [{
       path: '/',
       name: 'HelloWorld',
       redirect: '/home',
@@ -42,9 +42,30 @@ export default new Router({
       name: "个人中心",
       component: User
     }
-
-
-
   ]
+// if (window.localStorage.getItem('token')) {
+//   store.commit(types.LOGIN, window.localStorage.getItem('token'))
+// }
+const router = new Router({
+  routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(r => r.meta.requireAuth)) {
+    if (store.state.token) {
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }
+  } else {
+    next();
+  }
 })
+export default router;
+
 

@@ -46,22 +46,15 @@
           login_type:'',
           user_Datas:{},
           dialog: false,
-          error:''
+          error:'',
+          params:{}
       }
     },
     methods:{
       login(){
         this.getlogintype();
-        this.$auth.login({
-          params:{
-            email:this.email,
-            password:this.password,
-          },
-          success:function(){},
-          error: function () {},
-          rememberMe: true,
-          redirect: '/home',
-          fetchUser: false,
+        this.axios.post('/auth/login',this.params).then(function(resp) {
+          console.log(resp);
         })
       },
       getlogintype(){
@@ -69,7 +62,9 @@
         var reg_email = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
         if(reg_phone.test(this.email)){
             this.login_type="phone";
-        }else if(reg_phone.test(this.phone)){
+        }else if(reg_email.test(this.email)){
+          console.log(2222);
+            this.params={email:this.email,password:this.password}
             this.login_type='email';
         }else{
               this.error="请输入正确的手机号或邮箱!"
