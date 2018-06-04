@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
-import store from '@/store'
+import store from '@/store/store'
 
 // import * as types from './store/types'
 import router from '@/router'
@@ -28,12 +28,11 @@ axios.interceptors.request.use(
 
 // http response 拦截器
 axios.interceptors.response.use(
-  (response) => {
-    console.log(response.headers);
 
+
+  response => {
     var token = response.headers.authorization
     if (token) {
-      console.log(32124214);
       // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
       this.$store.dispatch('refreshToken', token)
     }
@@ -51,6 +50,9 @@ axios.interceptors.response.use(
         case 401:
           // 401 清除token信息并跳转到登录页面
           return this.$store.dispatch('logout')
+          break
+        case 201:
+          return this.$store.dispatch('refreshToken', token)
           break
         case 400:
           //错误提示

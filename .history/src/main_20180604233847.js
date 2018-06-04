@@ -5,14 +5,16 @@ import App from './App'
 import router from './router'
 import axios from './utils/http'
 import VueAxios from 'vue-axios'
-import store from './store/index'
+import store from './store/store'
 import Vuex from 'vuex'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 
+Vue.use(Vuex)
 Vue.use(MuseUI)
 Vue.use(VueAxios, axios)
+vue.use(store)
 Vue.config.productionTip = false
 
 
@@ -20,7 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
+  axios,
   components: {
     App
   },

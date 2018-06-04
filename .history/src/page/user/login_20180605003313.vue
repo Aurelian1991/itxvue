@@ -56,7 +56,6 @@
         this.axios.post('/auth/login',this.params).then((data)=> {
             var token = data.headers.authorization
             console.log(token)
-            console.log(data)
             this.$store.dispatch('logined')
             this.router.push('/home')
         })

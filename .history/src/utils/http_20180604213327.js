@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
-import store from '@/store'
+import store from '@/store/store'
 
 // import * as types from './store/types'
 import router from '@/router'
@@ -28,21 +28,9 @@ axios.interceptors.request.use(
 
 // http response 拦截器
 axios.interceptors.response.use(
-  (response) => {
-    console.log(response.headers);
 
-    var token = response.headers.authorization
-    if (token) {
-      console.log(32124214);
-      // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
-      this.$store.dispatch('refreshToken', token)
-    }
-    var token = response.headers.authorization
-    if (token) {
-      // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
-      this.$store.dispatch('refreshToken', token)
-    }
 
+  response => {
     return response;
   },
   error => {
@@ -50,15 +38,13 @@ axios.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           // 401 清除token信息并跳转到登录页面
-          return this.$store.dispatch('logout')
-          break
-        case 400:
-          //错误提示
-          return
-          break
-        case 500:
-          //服务器内部错误
-          brake;
+          store.commit(types.LOGOUT);
+          router.replace({
+            path: 'login',
+            query: {
+              redirect: router.currentRoute.fullPath
+            }
+          })
       }
     }
     // console.log(JSON.stringify(error));//console : Error: Request failed with status code 402

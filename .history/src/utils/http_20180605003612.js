@@ -28,8 +28,10 @@ axios.interceptors.request.use(
 
 // http response 拦截器
 axios.interceptors.response.use(
-  (response) => {
-    console.log(response.headers);
+
+
+  response => {
+    console.log(response.headers)
 
     var token = response.headers.authorization
     if (token) {

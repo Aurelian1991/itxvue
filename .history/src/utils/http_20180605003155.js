@@ -28,12 +28,12 @@ axios.interceptors.request.use(
 
 // http response 拦截器
 axios.interceptors.response.use(
-  (response) => {
-    console.log(response.headers);
 
+
+  response => {
     var token = response.headers.authorization
     if (token) {
-      console.log(32124214);
+      // console.log(32124214);
       // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
       this.$store.dispatch('refreshToken', token)
     }
