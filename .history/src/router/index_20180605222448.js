@@ -44,13 +44,18 @@ const routes = [{
     meta: {
       requireAuth: true
     },
-  },
-  {
-    path: '/create',
-    name: '创作',
-    component: Create
-  }
+    {
+      path: '/create',
+      name: '创作',
+      component: Create
+    }
+    // children: [{
+    //   path: '/index',
+    //   name: '个人中心',
+    //   component: Home
+    // }]
 
+  }
 ]
 // if (window.localStorage.getItem('token')) {
 //   store.commit(types.LOGIN, window.localStorage.getItem('token'))

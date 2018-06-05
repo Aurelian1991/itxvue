@@ -32,11 +32,8 @@ axios.interceptors.response.use(
     var token = response.headers.authorization
     if (token) {
       // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
-      if (response.status == 201) {
-        console.log('logined')
-        store.dispatch('logined', token)
-      }
-      store.dispatch('refreshToken', token)
+      console.log(response.status)
+      this.$store.dispatch('refreshToken', token)
     }
     return response;
   },

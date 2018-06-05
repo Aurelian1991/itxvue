@@ -54,7 +54,7 @@
       login(){
         this.getlogintype();
         this.axios.post('/auth/login',this.params).then((response)=> {
-            this.$router.push('/home')
+            this.$route.push('/home')
         })
       },
       getlogintype(){

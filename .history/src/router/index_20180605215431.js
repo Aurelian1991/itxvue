@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import store from '@/store'
 import Home from '@/page/home/Home'
@@ -7,11 +7,11 @@ import Login from '@/page/user/login'
 import Register from '@/page/user/register'
 import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
-import Create from '@/components/create'
 
 
 
-Vue.use(VueRouter)
+Vue.use(Router)
+
 const routes = [{
     path: '/',
     name: 'HelloWorld',
@@ -40,22 +40,13 @@ const routes = [{
   {
     path: '/user',
     name: "个人中心",
-    component: User,
-    meta: {
-      requireAuth: true
-    },
-  },
-  {
-    path: '/create',
-    name: '创作',
-    component: Create
+    component: User
   }
-
 ]
 // if (window.localStorage.getItem('token')) {
 //   store.commit(types.LOGIN, window.localStorage.getItem('token'))
 // }
-const router = new VueRouter({
+const router = new Router({
   routes
 });
 

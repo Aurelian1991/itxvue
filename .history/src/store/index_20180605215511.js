@@ -33,6 +33,7 @@ const store = new Vuex.Store({
       state.user.name = data.data.name
       state.user.mobile = data.data.mobile
       state.user.avatar = data.data.avatar
+      this.router.push()
     },
     logout(state) {
       state.user.name = null

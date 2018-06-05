@@ -30,9 +30,11 @@ const store = new Vuex.Store({
     },
     //登录成功
     profile(state, data) {
+      console.log(data.data)
       state.user.name = data.data.name
       state.user.mobile = data.data.mobile
       state.user.avatar = data.data.avatar
+      console.log(state);
     },
     logout(state) {
       state.user.name = null

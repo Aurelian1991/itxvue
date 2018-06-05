@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import VueRouter from 'vue-router'
 import router from './router'
 import axios from './utils/http'
 import VueAxios from 'vue-axios'
@@ -13,6 +14,7 @@ import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 
 Vue.use(MuseUI)
 Vue.use(VueAxios, axios)
+Vue.use(Router)
 Vue.config.productionTip = false
 
 

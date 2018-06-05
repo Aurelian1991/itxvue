@@ -181,7 +181,7 @@
         this.activeTab = val;
       },
       goCreate(){
-        this.$router.push('/create')
+        this.$router.push('/creat')
       }
     }
   };

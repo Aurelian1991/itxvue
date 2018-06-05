@@ -54,8 +54,8 @@
       login(){
         this.getlogintype();
         this.axios.post('/auth/login',this.params).then((response)=> {
-            this.$router.push('/home')
-        })
+            this.router.push('/home')
+        }.bind(this))
       },
       getlogintype(){
         var reg_phone=/^1[345678][0-9]{9}/;

@@ -179,9 +179,6 @@
     methods: {
       handleTabChange(val) {
         this.activeTab = val;
-      },
-      goCreate(){
-        this.$router.push('/create')
       }
     }
   };

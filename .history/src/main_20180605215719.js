@@ -13,6 +13,7 @@ import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 
 Vue.use(MuseUI)
 Vue.use(VueAxios, axios)
+Vue.use(Router)
 Vue.config.productionTip = false
 
 

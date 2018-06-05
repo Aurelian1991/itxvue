@@ -7,7 +7,7 @@ import Login from '@/page/user/login'
 import Register from '@/page/user/register'
 import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
-import Create from '@/components/create'
+import create from '@/components/create'
 
 
 
@@ -44,13 +44,18 @@ const routes = [{
     meta: {
       requireAuth: true
     },
-  },
-  {
-    path: '/create',
-    name: '创作',
-    component: Create
-  }
+    {
+      path: '/create',
+      name: '创作',
+      component: created
+    }
+    // children: [{
+    //   path: '/index',
+    //   name: '个人中心',
+    //   component: Home
+    // }]
 
+  }
 ]
 // if (window.localStorage.getItem('token')) {
 //   store.commit(types.LOGIN, window.localStorage.getItem('token'))

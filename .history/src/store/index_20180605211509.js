@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     auth: false
   },
   mutations: {
-    logined(state, token) {
+    logined(state, token\) {
       state.auth = true
       state.token = token
       localStorage.token = token
@@ -30,9 +30,9 @@ const store = new Vuex.Store({
     },
     //登录成功
     profile(state, data) {
-      state.user.name = data.data.name
-      state.user.mobile = data.data.mobile
-      state.user.avatar = data.data.avatar
+      state.user.name = data.name
+      state.user.mobile = data.mobile
+      state.user.avatar = data.avatar
     },
     logout(state) {
       state.user.name = null

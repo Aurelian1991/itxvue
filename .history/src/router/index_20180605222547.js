@@ -44,8 +44,7 @@ const routes = [{
     meta: {
       requireAuth: true
     },
-  },
-  {
+  } {
     path: '/create',
     name: '创作',
     component: Create

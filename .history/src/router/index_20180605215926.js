@@ -7,7 +7,6 @@ import Login from '@/page/user/login'
 import Register from '@/page/user/register'
 import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
-import Create from '@/components/create'
 
 
 
@@ -40,17 +39,8 @@ const routes = [{
   {
     path: '/user',
     name: "个人中心",
-    component: User,
-    meta: {
-      requireAuth: true
-    },
-  },
-  {
-    path: '/create',
-    name: '创作',
-    component: Create
+    component: User
   }
-
 ]
 // if (window.localStorage.getItem('token')) {
 //   store.commit(types.LOGIN, window.localStorage.getItem('token'))
@@ -59,20 +49,20 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(r => r.meta.requireAuth)) {
-    if (store.state.token) {
-      next();
-    } else {
-      next({
-        path: '/login',
-        query: {
-          redirect: to.fullPath
-        }
-      })
-    }
-  } else {
-    next();
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(r => r.meta.requireAuth)) {
+//     if (store.state.token) {
+//       next();
+//     } else {
+//       next({
+//         path: '/login',
+//         query: {
+//           redirect: to.fullPath
+//         }
+//       })
+//     }
+//   } else {
+//     next();
+//   }
+// })
 export default router;

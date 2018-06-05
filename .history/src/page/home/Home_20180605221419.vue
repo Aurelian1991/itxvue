@@ -13,9 +13,9 @@
         <mu-icon value="search"></mu-icon>
       </mu-flat-button>
       爱偷闲
-      <mu-flat-button flat slot="right" color="success" @click="goCreate">
+      <mu-button flat slot="right" color="success">
          <mu-icon value="create"></mu-icon>
-      </mu-flat-button>
+      </mu-button>
     </mu-appbar>
     <div v-if="activeTab === 'topics'" class="content">
       <mu-card v-for="(item,k) in topics" :key="k">
@@ -179,9 +179,6 @@
     methods: {
       handleTabChange(val) {
         this.activeTab = val;
-      },
-      goCreate(){
-        this.$router.push('/create')
       }
     }
   };

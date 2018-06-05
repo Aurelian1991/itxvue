@@ -53,8 +53,14 @@
     methods:{
       login(){
         this.getlogintype();
-        this.axios.post('/auth/login',this.params).then((response)=> {
-            this.$router.push('/home')
+        this.axios.post('/auth/login',this.params).then(function(data) {
+            
+        }=> {
+            // var token = data.headers.authorization
+            // console.log(token)
+            // console.log(data)
+            // this.$store.dispatch('logined')
+            this.router.push('/home')
         })
       },
       getlogintype(){
