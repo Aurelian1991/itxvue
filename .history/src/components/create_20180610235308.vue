@@ -29,7 +29,6 @@
     height: 100%;
     display: flex;
     background-color: #546e7a;
-    /* background-color:aliceblue; */
     flex-wrap: wrap;
     text-align: center;
     position: absolute;

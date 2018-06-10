@@ -43,7 +43,7 @@
   .demo-float-button {
     margin: 12px;
     text-align: center;
-    background-color: #546e7a;
+    /* background-color: #546e7a; */
   }
 
 </style>

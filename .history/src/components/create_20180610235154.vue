@@ -29,7 +29,6 @@
     height: 100%;
     display: flex;
     background-color: #546e7a;
-    /* background-color:aliceblue; */
     flex-wrap: wrap;
     text-align: center;
     position: absolute;
@@ -44,6 +43,11 @@
     margin: 12px;
     text-align: center;
     background-color: #546e7a;
+    /* color: #fafafa; */
+    /* border-radius: 50%; */
+    border-color: #ff9800;
+
+
   }
 
 </style>

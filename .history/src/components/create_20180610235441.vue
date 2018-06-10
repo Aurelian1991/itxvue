@@ -28,8 +28,8 @@
     width: 100%;
     height: 100%;
     display: flex;
-    background-color: #546e7a;
-    /* background-color:aliceblue; */
+    /* background-color: #546e7a; */
+    background-color:aliceblue;
     flex-wrap: wrap;
     text-align: center;
     position: absolute;
@@ -43,7 +43,8 @@
   .demo-float-button {
     margin: 12px;
     text-align: center;
-    background-color: #546e7a;
+    border-color: black;
+    /* background-color: #546e7a; */
   }
 
 </style>
