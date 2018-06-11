@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <mu-back-top :bottom="80" :right="15" :duration="1000">
       <mu-float-button icon="arrow_upward" />
     </mu-back-top>
@@ -188,6 +188,10 @@
 
 </script>
 <style lang="less">
+  .container{
+    position: absolute;
+    top:0px;
+  }
   .mu-card-header-title {
     float: left;
   }
