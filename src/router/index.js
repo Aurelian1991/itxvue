@@ -8,6 +8,7 @@ import Register from '@/page/user/register'
 import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
 import Create from '@/components/create'
+import Topiccreate from '@/page/topic/create'
 
 
 
@@ -49,7 +50,19 @@ const routes = [{
     path: '/create',
     name: '创作',
     component: Create
+  },
+  {
+    path: '/topic/create',
+      name: '话题',
+      component: Topiccreate,
+    children: [{
+      path: '/create',
+      name: '创作',
+      component: Topiccreate
+    }]
+
   }
+  
 
 ]
 // if (window.localStorage.getItem('token')) {
