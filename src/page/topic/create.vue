@@ -31,9 +31,10 @@
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             function (position) {
+              console.log()
               var longitude = position.coords.longitude;
               var latitude = position.coords.latitude;
-             var  url='http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='+longitude+','+latitude+'&output=json&pois=1&ak=lr7Cl7QkbGqH5irqlK5wZvwQ9duK84hc';
+             var  url='http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=31.206671,121.603762&output=json&pois=1&ak=lr7Cl7QkbGqH5irqlK5wZvwQ9duK84hc&coordtype=gcj02ll';
               that.axios.get(url).then(response => {
                 console.log(response);
             });
@@ -52,9 +53,9 @@
     },
     created() {
       this.init();
-      this.axios.post("/auth/login", this.params).then(response => {
-        // this.$router.push("/home");
-      });
+      // this.axios.post("/auth/login", this.params).then(response => {
+      //   // this.$router.push("/home");
+      // });
     }
 
   };

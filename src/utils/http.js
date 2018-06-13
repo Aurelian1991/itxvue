@@ -7,8 +7,8 @@ import router from '@/router'
 
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'http://123.207.49.31/api/';
-axios.defaults.autofaceURL = 'http://123.207.49.31/api/';
+axios.defaults.baseURL = 'http://www.vueapi.com/api/';
+axios.defaults.autofaceURL = 'http://www.vueapi.com/api/';
 
 
 

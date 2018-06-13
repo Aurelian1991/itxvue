@@ -6,7 +6,7 @@
     <mu-bottom-nav-item value="recents" title="主页" icon="restore" to="/home"/>
     <mu-bottom-nav-item value="favorites" title="Favorites" icon="favorite" to="/home"/>
     <mu-bottom-nav-item value="favorites" title="更多" icon="favorite" to="/home"/>
-    <mu-bottom-nav-item value="nearby" title="我的" icon="location_on" to="/user/index"/>
+    <mu-bottom-nav-item value="nearby" title="我的" icon="location_on" to="/user"/>
   </mu-bottom-nav>
 </mu-paper>
 </div>
