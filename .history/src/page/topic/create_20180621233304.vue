@@ -22,12 +22,7 @@
     <mu-flexbox-item class="flex-bottom">
        <mu-raised-button @click="openBottomSheet" label=" Sheet" />
     </mu-flexbox-item>
-   <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Open " />
-    </mu-flexbox-item>
-    <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Bottom" />
-    </mu-flexbox-item>
+  
   </mu-flexbox>
  
   <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet">
@@ -153,7 +148,7 @@
 
 .flex-bottom{
    height: 32px;
-  // background-color: #e0e0e0;
+  background-color: #e0e0e0;
   text-align: center;
   line-height: 32px;
 }

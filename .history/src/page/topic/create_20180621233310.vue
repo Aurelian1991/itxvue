@@ -153,7 +153,7 @@
 
 .flex-bottom{
    height: 32px;
-  // background-color: #e0e0e0;
+  background-color: #e0e0e0;
   text-align: center;
   line-height: 32px;
 }

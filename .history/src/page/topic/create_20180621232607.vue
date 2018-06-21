@@ -20,17 +20,17 @@
 <div style="position:absolute;bottom:0px;width:100%;">
    <mu-flexbox >
     <mu-flexbox-item class="flex-bottom">
-       <mu-raised-button @click="openBottomSheet" label=" Sheet" />
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
    <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Open " />
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
     <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Bottom" />
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
   </mu-flexbox>
  
-  <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet">
+  <!-- <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet">
     <mu-list @itemClick="closeBottomSheet">
       <mu-sub-header>
         请选择一个
@@ -40,7 +40,7 @@
       <mu-list-item title="一划到底"/>
       <mu-list-item title="全民斗地主"/>
     </mu-list>
-  </mu-bottom-sheet>
+  </mu-bottom-sheet> -->
 </div> 
   </div>
   
@@ -153,7 +153,7 @@
 
 .flex-bottom{
    height: 32px;
-  // background-color: #e0e0e0;
+  background-color: #e0e0e0;
   text-align: center;
   line-height: 32px;
 }

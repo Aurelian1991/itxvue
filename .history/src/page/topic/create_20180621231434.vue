@@ -17,19 +17,10 @@
             </mu-icon>
          </mu-icon-button>
     </div>
-<div style="position:absolute;bottom:0px;width:100%;">
-   <mu-flexbox >
-    <mu-flexbox-item class="flex-bottom">
-       <mu-raised-button @click="openBottomSheet" label=" Sheet" />
-    </mu-flexbox-item>
-   <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Open " />
-    </mu-flexbox-item>
-    <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Bottom" />
-    </mu-flexbox-item>
-  </mu-flexbox>
  
+  </div>
+  <div>
+  <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
   <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet">
     <mu-list @itemClick="closeBottomSheet">
       <mu-sub-header>
@@ -41,9 +32,7 @@
       <mu-list-item title="全民斗地主"/>
     </mu-list>
   </mu-bottom-sheet>
-</div> 
-  </div>
-  
+</div>
 </template>
 <style lang="less" scoped>
 
@@ -53,8 +42,7 @@
   export default {
     data() {
       return {
-        content: "",
-        bottomSheet: false
+        content: ""
       };
     },
     methods: {
@@ -83,13 +71,7 @@
             }
           )
         }
-      },
-       closeBottomSheet () {
-      this.bottomSheet = false
-    },
-    openBottomSheet () {
-      this.bottomSheet = true
-    }
+      }
     },
     created() {
       this.init();
@@ -151,11 +133,5 @@
   opacity: 0;
 }
 
-.flex-bottom{
-   height: 32px;
-  // background-color: #e0e0e0;
-  text-align: center;
-  line-height: 32px;
-}
 
 </style>

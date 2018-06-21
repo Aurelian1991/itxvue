@@ -17,16 +17,16 @@
             </mu-icon>
          </mu-icon-button>
     </div>
-<div style="position:absolute;bottom:0px;width:100%;">
-   <mu-flexbox >
-    <mu-flexbox-item class="flex-bottom">
-       <mu-raised-button @click="openBottomSheet" label=" Sheet" />
+<div style="position:absolute;bottom:0px;">
+   <mu-flexbox>
+    <mu-flexbox-item class="flex-demo">
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
    <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Open " />
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
     <mu-flexbox-item class="flex-demo">
-       <mu-raised-button @click="openBottomSheet" label="Bottom" />
+       <mu-raised-button @click="openBottomSheet" label="Open Bottom Sheet" />
     </mu-flexbox-item>
   </mu-flexbox>
  
@@ -151,11 +151,5 @@
   opacity: 0;
 }
 
-.flex-bottom{
-   height: 32px;
-  // background-color: #e0e0e0;
-  text-align: center;
-  line-height: 32px;
-}
 
 </style>
