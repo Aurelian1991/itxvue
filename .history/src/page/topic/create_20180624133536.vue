@@ -2,7 +2,7 @@
   <div class="container">
     <mu-appbar style="width: 100%; background-color:#181928;margin-bottom:1px;" title="记录中">
       <mu-icon-button icon="close" slot="left" @click="goback" />
-      <mu-icon-button icon="close" slot="right" @click="topicSave" >
+      <mu-icon-button icon="close" slot="right">
         <mu-icon value=":fa :fa-paper-plane " class="fa-paper-plane" aria-hidden="true" />
       </mu-icon-button>
     </mu-appbar>
@@ -10,20 +10,12 @@
     <div class="content">
       <mu-text-field v-model="content" multi-line :rows="10" full-width :underlineShow="false" inputClass="textbox"></mu-text-field>
     </div>
-    <!-- <div class="demo-chip-container"> -->
-    <mu-chip v-for="(item,index) in fileList" :key="item.name" class="chip" @delete="handleClose(index)" showDelete>
-      <img :src=item.url>
-    </mu-chip>
-    <!-- <mu-flexbox class="">
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=1" />
-          </mu-flexbox-item>
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=3" />
-          </mu-flexbox-item>
-        </mu-flexbox> -->
-    <!-- </div> -->
     <div class="add_button">
+          <div class="demo-chip-container">
+    <mu-chip v-for="item in fileList" :key="item.url" class="demo-chip">
+          <img :src=item.url>
+      </mu-chip>
+    </div>
       <!-- <mu-icon-button class="add"> -->
       <vue-core-image-upload class="btn btn-primary" :crop="false" @imageuploaded="imageUploded" :max-file-size="5242880" :multiple="true"
         :multiple-size="4" url="http://www.vueapi.com/api/upload/pictures">
@@ -107,24 +99,6 @@
         this.fileList = this.fileList.concat(res.data.data);
         // }
       },
-      handleClose(index) {
-        this.fileList.splice(index, 1);
-        window.alert('你点击了删除按钮')
-      },
-      topicSave() {
-        console.log(11111);
-        let params = {
-          content: this.content,
-          pictures: this.fileList,
-        }
-        console.log(this.$qs.stringify(params))
-        
-        this.axios.post('/topic', this.$qs.stringify(params)).then(response => {
-          alert(response)
-        }, response => {
-          console.log(response);
-        })
-      },
       init() {
         var that = this;
         if (navigator.geolocation) {
@@ -198,17 +172,6 @@
 
   .content {
     background-color: #181928;
-  }
-
-  .chip {
-    float: left; // width:120px;
-    height: 120px;
-    margin: 0px 5px;
-  }
-
-  img {
-    max-width: 100px;
-    max-height: 200px;
   }
 
   .add_button {

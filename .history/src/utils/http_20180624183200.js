@@ -20,7 +20,10 @@ axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authorization = `token ${store.state.token}`;
     }
-
+    if (config.method == "post") {
+      config.data = qs.stringify(config.data);
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
 
 
 
@@ -45,8 +48,6 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error);
-    return;
     if (error.response) {
       switch (error.response.status) {
         case 401:
@@ -61,8 +62,7 @@ axios.interceptors.response.use(
           //服务器内部错误
           brake;
         default:
-          console.log(error);
-          return
+
       }
     }
     console.log(JSON.stringify(error)); //console : Error: Request failed with status code 402

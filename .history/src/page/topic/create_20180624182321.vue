@@ -2,8 +2,8 @@
   <div class="container">
     <mu-appbar style="width: 100%; background-color:#181928;margin-bottom:1px;" title="记录中">
       <mu-icon-button icon="close" slot="left" @click="goback" />
-      <mu-icon-button icon="close" slot="right" @click="topicSave" >
-        <mu-icon value=":fa :fa-paper-plane " class="fa-paper-plane" aria-hidden="true" />
+      <mu-icon-button icon="close" slot="right">
+        <mu-icon value=":fa :fa-paper-plane " class="fa-paper-plane" aria-hidden="true" @click="topicSave" />
       </mu-icon-button>
     </mu-appbar>
 
@@ -117,12 +117,10 @@
           content: this.content,
           pictures: this.fileList,
         }
-        console.log(this.$qs.stringify(params))
-        
-        this.axios.post('/topic', this.$qs.stringify(params)).then(response => {
-          alert(response)
+        this.axios.post('/topic', this.$qs.stringify(data)).then(response => {
+          alert(response.data)
         }, response => {
-          console.log(response);
+          alert("出错啦！")
         })
       },
       init() {

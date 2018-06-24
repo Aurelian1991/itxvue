@@ -117,12 +117,11 @@
           content: this.content,
           pictures: this.fileList,
         }
-        console.log(this.$qs.stringify(params))
-        
         this.axios.post('/topic', this.$qs.stringify(params)).then(response => {
-          alert(response)
+          alert(response.data)
         }, response => {
           console.log(response);
+          alert("出错啦！")
         })
       },
       init() {

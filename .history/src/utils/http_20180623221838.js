@@ -20,10 +20,6 @@ axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authorization = `token ${store.state.token}`;
     }
-
-
-
-
     return config;
   },
   err => {
@@ -45,27 +41,25 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error);
-    return;
     if (error.response) {
       switch (error.response.status) {
         case 401:
+          alert(211412421);
           // 401 清除token信息并跳转到登录页面
           return this.$store.dispatch('logout')
           break
         case 400:
           //错误提示
-          return
+          console.log(error.response)
           break
         case 500:
+          console.log(12421421) l
+          console.log(error.response)
           //服务器内部错误
           brake;
-        default:
-          console.log(error);
-          return
       }
     }
-    console.log(JSON.stringify(error)); //console : Error: Request failed with status code 402
+    // console.log(JSON.stringify(error));//console : Error: Request failed with status code 402
     return Promise.reject(error.response.data)
   });
 

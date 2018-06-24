@@ -20,7 +20,10 @@ axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authorization = `token ${store.state.token}`;
     }
-
+    if (config.method == "post") {
+      config.data = qs.stringify(config.data);
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
 
 
 
@@ -45,8 +48,7 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error);
-    return;
+    console.log(console.error();)
     if (error.response) {
       switch (error.response.status) {
         case 401:

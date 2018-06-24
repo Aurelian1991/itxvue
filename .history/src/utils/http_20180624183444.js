@@ -20,7 +20,10 @@ axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authorization = `token ${store.state.token}`;
     }
-
+    if (config.method == "post") {
+      config.data = qs.stringify(config.data);
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
 
 
 
@@ -45,9 +48,8 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error);
-    return;
-    if (error.response) {
+    console.
+    if(error.response) {
       switch (error.response.status) {
         case 401:
           // 401 清除token信息并跳转到登录页面

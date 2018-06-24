@@ -123,6 +123,7 @@
           alert(response)
         }, response => {
           console.log(response);
+          /*  */alert("出错啦！")
         })
       },
       init() {
