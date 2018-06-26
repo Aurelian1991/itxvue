@@ -18,17 +18,14 @@ axios.defaults.autofaceURL = 'http://www.vueapi.com/api/';
 axios.interceptors.request.use(
   config => {
     if (store.state.token) {
-      config.headers.Authorization = `token ${store.state.token}`;
+      config.headers.Authorization = `${store.state.token}`;
     }
-
-
-
-
     return config;
   },
   err => {
     return Promise.reject(err);
   });
+
 
 // http response 拦截器
 axios.interceptors.response.use(
@@ -37,7 +34,6 @@ axios.interceptors.response.use(
     if (token) {
       // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
       if (response.status == 201) {
-        console.log('logined')
         store.dispatch('logined', token)
       }
       store.dispatch('refreshToken', token)
@@ -45,8 +41,6 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error);
-    return;
     if (error.response) {
       switch (error.response.status) {
         case 401:

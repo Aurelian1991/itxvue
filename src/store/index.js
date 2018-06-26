@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
+import createPersistedState from "vuex-persistedstate"
 // import * as types from './types'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     user: {
       nam: null,
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
       state.auth = true
       state.token = token
       localStorage.token = token
+      console.log(state.token)
     },
     refreshToken(state, token) {
       state.token = token

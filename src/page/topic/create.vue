@@ -10,29 +10,15 @@
     <div class="content">
       <mu-text-field v-model="content" multi-line :rows="10" full-width :underlineShow="false" inputClass="textbox"></mu-text-field>
     </div>
-    <!-- <div class="demo-chip-container"> -->
     <mu-chip v-for="(item,index) in fileList" :key="item.name" class="chip" @delete="handleClose(index)" showDelete>
       <img :src=item.url>
     </mu-chip>
-    <!-- <mu-flexbox class="">
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=1" />
-          </mu-flexbox-item>
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=3" />
-          </mu-flexbox-item>
-        </mu-flexbox> -->
-    <!-- </div> -->
+
     <div class="add_button">
-      <!-- <mu-icon-button class="add"> -->
       <vue-core-image-upload class="btn btn-primary" :crop="false" @imageuploaded="imageUploded" :max-file-size="5242880" :multiple="true"
         :multiple-size="4" url="http://www.vueapi.com/api/upload/pictures">
         <i class="fa fa-plus fa-2x add" aria-hidden="true"></i>
       </vue-core-image-upload>
-
-      <!-- <mu-icon value=":fa :fa-plus" class="fa-plus" aria-hidden="true">
-        </mu-icon> -->
-      <!-- </mu-icon-button> -->
     </div>
 
 
@@ -109,18 +95,15 @@
       },
       handleClose(index) {
         this.fileList.splice(index, 1);
-        window.alert('你点击了删除按钮')
       },
       topicSave() {
-        console.log(11111);
         let params = {
           content: this.content,
-          pictures: this.fileList,
+          pictures:  this.fileList,
         }
-        console.log(this.$qs.stringify(params))
-        
-        this.axios.post('/topic', this.$qs.stringify(params)).then(response => {
-          alert(response)
+        this.axios.post('/topic',params).then(response => {
+          alert(response.data.msg);
+          this.$router.push('/')
         }, response => {
           console.log(response);
         })
