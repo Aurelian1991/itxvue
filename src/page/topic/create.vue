@@ -154,6 +154,11 @@
 
 </script>
 <style lang="less">
+
+
+</style>
+
+<style lang="less" scoped>
   .mu-appbar {
     color: #e0e0e0;
   }
@@ -164,10 +169,6 @@
     color: #bdbdbd;
 
   }
-
-</style>
-
-<style lang="less" scoped>
   .container {
     position: absolute;
     top: 0px;

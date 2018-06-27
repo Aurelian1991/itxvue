@@ -176,6 +176,10 @@
         ]
       };
     },
+    created:function () {
+      this.axios.get()
+      
+    },
     methods: {
       handleTabChange(val) {
         this.activeTab = val;
