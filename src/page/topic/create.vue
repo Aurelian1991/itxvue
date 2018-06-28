@@ -162,6 +162,17 @@
   .mu-appbar {
     color: #e0e0e0;
   }
+  .mu-text-field {
+    font-size: 16px;
+    // width: 256px;
+    min-height: 48px;
+    display: inline-block;
+    max-height: 500px;
+    position: relative;
+    color: rgba(0,0,0,.54);
+    margin-bottom: 8px;
+    overflow-y: scroll;
+}
 
   .mu-text-field-input {
     // color: #e0e0e0;

@@ -14,25 +14,31 @@
       </mu-flat-button>
       爱偷闲
       <mu-flat-button flat slot="right" color="success" @click="goCreate">
-         <mu-icon value="create"></mu-icon>
+        <mu-icon value="create"></mu-icon>
       </mu-flat-button>
     </mu-appbar>
     <div v-if="activeTab === 'topics'" class="content">
+
       <mu-card v-for="(item,k) in topics" :key="k">
-        <mu-card-header title="Myron Avatar" subTitle="sub title">
-          <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
-          <mu-flat-button label="关注" style="float:right" />
-        </mu-card-header>
-        <mu-card-text>
-          散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
-        </mu-card-text>
+          <mu-card-header v-if="item.user"  v-bind:title="item.user.name" subTitle="sub title">
+            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+            <mu-flat-button label="关注" style="float:right" />
+          </mu-card-header>
+                    <mu-card-header v-else  title="火星来客" subTitle="sub title">
+            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+            <mu-flat-button label="关注" style="float:right" />
+          </mu-card-header>
+
+        <!-- <mu-card-text>
+          {{item.content}}
+        </mu-card-text> -->
+          <mu-content-block>
+          {{item.content}}
+        </mu-content-block>
         <!-- <mu-card-media title="Image Title" subTitle="Image Sub Title"> -->
         <mu-flexbox class="">
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=1" />
-          </mu-flexbox-item>
-          <mu-flexbox-item class="">
-            <img src="https://placeimg.com/244/132/any?id=3" />
+          <mu-flexbox-item  v-if="item.picture"   v-for="(pic, ind) in item.picture" :key="ind" class="">
+            <img v-bind:src="pic" />
           </mu-flexbox-item>
         </mu-flexbox>
         <!-- </mu-card-media> -->
@@ -62,129 +68,22 @@
     data() {
       return {
         activeTab: "topics",
-
-        topics: [{
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          },
-          {
-            id: "1",
-            name: "2",
-            title: 3
-          }
-        ]
+        topics: []
       };
     },
-    created:function () {
-      this.axios.get()
-      
+    created: function () {
+      this.axios.get('/topic').then((response) => {
+        this.topics = this.topics.concat(response.data.data)
+        console.log(this.topics);
+
+      })
+
     },
     methods: {
       handleTabChange(val) {
         this.activeTab = val;
       },
-      goCreate(){
+      goCreate() {
         this.$router.push('/create')
       }
     }
@@ -192,10 +91,11 @@
 
 </script>
 <style lang="less">
-  .container{
+  .container {
     position: absolute;
-    top:0px;
+    top: 0px;
   }
+
   .mu-card-header-title {
     float: left;
   }

@@ -37,7 +37,7 @@ export default {
   }
 };
 </script>
-<<style lang="less">
+<<style lang="less" scoped>
     .mu-text-field-content input{
         color: #fff;
     }
