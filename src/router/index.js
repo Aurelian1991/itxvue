@@ -9,6 +9,7 @@ import HomeIndex from '@/page/index'
 import User from '@/page/user/index'
 import Create from '@/components/create'
 import Topiccreate from '@/page/topic/create'
+import TopicShow from '@/page/topic/show'
 
 
 
@@ -55,13 +56,12 @@ const routes = [{
     path: '/topic/create',
       name: '话题',
       component: Topiccreate,
-    children: [{
-      path: '/create',
-      name: '创作',
-      component: Topiccreate
-    }]
-
-  }
+  },
+   {
+     path: '/topic/show/:id',
+     name: '话题',
+     component: TopicShow,
+   }
   
 
 ]
@@ -72,7 +72,7 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => { 
   if (to.matched.some(r => r.meta.requireAuth)) {
     if (store.state.token) {
       next();

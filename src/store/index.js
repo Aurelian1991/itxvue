@@ -23,6 +23,8 @@ const store = new Vuex.Store({
       state.auth = true
       state.token = token
       localStorage.token = token
+      alert(token);
+
       console.log(state.token)
     },
     refreshToken(state, token) {

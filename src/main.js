@@ -5,15 +5,19 @@ import App from './App'
 import router from './router'
 import axios from './utils/http'
 import VueAxios from 'vue-axios'
-import Vuex from 'vuex'
 import store from './store'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 import querystring from 'querystring'
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(MuseUI)
 Vue.use(VueAxios, axios)
+Vue.use(VueLazyload,{
+  loading: 'http://image.heitem.com/timg.gif'
+})
+
 Vue.config.productionTip = false
 Vue.prototype.$qs = querystring;
 

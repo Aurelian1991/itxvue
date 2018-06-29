@@ -22,6 +22,8 @@
     "vue": "^2.5.2",
     "vue-axios": "^2.1.1",
     "vue-core-image-upload": "^2.4.11",
+    "vue-lazyload": "^1.2.6",
+    "vue-picture-preview": "^1.2.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"

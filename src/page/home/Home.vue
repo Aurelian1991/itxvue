@@ -20,7 +20,7 @@
     <div v-if="activeTab === 'topics'" class="content">
 
       <mu-card v-for="(item,k) in topics" :key="k">
-          <mu-card-header v-if="item.user"  v-bind:title="item.user.name" subTitle="sub title">
+          <mu-card-header v-if="item.user"  v-bind:title="item.user.name" v-bind:subTitle="item.created_at">
             <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
             <mu-flat-button label="关注" style="float:right" />
           </mu-card-header>
@@ -32,13 +32,13 @@
         <!-- <mu-card-text>
           {{item.content}}
         </mu-card-text> -->
-          <mu-content-block>
+          <mu-content-block @click.native="goDetail(item.id)">
           {{item.content}}
         </mu-content-block>
         <!-- <mu-card-media title="Image Title" subTitle="Image Sub Title"> -->
         <mu-flexbox class="">
           <mu-flexbox-item  v-if="item.picture"   v-for="(pic, ind) in item.picture" :key="ind" class="">
-            <img v-bind:src="pic" />
+            <img v-lazy="pic"  />
           </mu-flexbox-item>
         </mu-flexbox>
         <!-- </mu-card-media> -->
@@ -51,7 +51,7 @@
               <mu-flat-button label="文字在前面" class="action-flat-button" icon="favorite_border" />
             </mu-flexbox-item>
             <mu-flexbox-item class="flex-demo">
-              <mu-flat-button label='1312' class="action-flat-button" icon="chat" />
+              <mu-flat-button v-bind:label="item.comment_num.toFixed()" class="action-flat-button" icon="chat" />
             </mu-flexbox-item>
             <mu-flexbox-item class="flex-demo">
               <mu-flat-button class="action-flat-button" icon="open_in_new" />
@@ -85,6 +85,9 @@
       },
       goCreate() {
         this.$router.push('/create')
+      },
+      goDetail(id) {
+        this.$router.push('/topic/show/'+id)
       }
     }
   };
@@ -94,6 +97,7 @@
   .container {
     position: absolute;
     top: 0px;
+    width:100%;
   }
 
   .mu-card-header-title {

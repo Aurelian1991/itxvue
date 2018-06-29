@@ -1,14 +1,53 @@
 <template>
   <div class="container">
-    <mu-appbar style="width: 100%; background-color:#181928;margin-bottom:1px;" title="记录中">
+    <mu-appbar style="width: 100%; background-color:#181928;margin-bottom:1px;" title="详情">
       <mu-icon-button icon="close" slot="left" @click="goback" />
-      <mu-icon-button icon="close" slot="right" @click="topicSave" >
+      <!-- <mu-icon-button icon="close" slot="right" @click="topicSave" >
         <mu-icon value=":fa :fa-paper-plane " class="fa-paper-plane" aria-hidden="true" />
-      </mu-icon-button>
+      </mu-icon-button> -->
     </mu-appbar>
 
     <div class="content">
-      <mu-text-field v-model="content" multi-line :rows="10" full-width :underlineShow="false" inputClass="textbox"></mu-text-field>
+          <mu-card v-if="topic">
+          <mu-card-header v-if="item.user"  v-bind:title="item.user.name" v-bind:subTitle="item.created_at">
+            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+            <mu-flat-button label="关注" style="float:right" />
+          </mu-card-header>
+                    <mu-card-header v-else  title="火星来客" subTitle="sub title">
+            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+            <mu-flat-button label="关注" style="float:right" />
+          </mu-card-header>
+
+        <!-- <mu-card-text>
+          {{item.content}}
+        </mu-card-text> -->
+          <mu-content-block @click.native="goDetail(item.id)">
+          {{item.content}}
+        </mu-content-block>
+        <!-- <mu-card-media title="Image Title" subTitle="Image Sub Title"> -->
+        <mu-flexbox class="">
+          <mu-flexbox-item  v-if="item.picture"   v-for="(pic, ind) in item.picture" :key="ind" class="">
+            <img v-lazy="pic"  />
+          </mu-flexbox-item>
+        </mu-flexbox>
+        <!-- </mu-card-media> -->
+        <mu-card-actions class="action-flat-button-container">
+          <mu-flexbox>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button label="123" class="demo-flat-button" icon="thumb_up" style="outline" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button label="文字在前面" class="action-flat-button" icon="favorite_border" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button v-bind:label="item.comment_num.toFixed()" class="action-flat-button" icon="chat" />
+            </mu-flexbox-item>
+            <mu-flexbox-item class="flex-demo">
+              <mu-flat-button class="action-flat-button" icon="open_in_new" />
+            </mu-flexbox-item>
+          </mu-flexbox>
+        </mu-card-actions>
+      </mu-card>
     </div>
     <mu-chip v-for="(item,index) in fileList" :key="item.name" class="chip" @delete="handleClose(index)" showDelete>
       <img :src=item.url>
@@ -20,12 +59,7 @@
         <i class="fa fa-plus fa-2x add" aria-hidden="true"></i>
       </vue-core-image-upload>
     </div>
-1
-2
-3
-4
-5
-6
+
 
     <div style="position:absolute;bottom:0px;width:100%; background-color: #181928;">
       <mu-flexbox>
@@ -83,9 +117,8 @@
     },
     data() {
       return {
-        content: "",
+        topic: {},
         bottomSheet: false,
-        fileList: [],
       };
     },
     methods: {
@@ -101,45 +134,11 @@
       handleClose(index) {
         this.fileList.splice(index, 1);
       },
-      topicSave() {
-        let params = {
-          content: this.content,
-          pictures:  this.fileList,
-        }
-        this.axios.post('/topic',params).then(response => {
-          alert(response.data.msg);
-          this.$router.push('/')
-        }, response => {
-          console.log(response);
-        })
-      },
       init() {
-        var that = this;
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            function (position) {
-              var longitude = position.coords.longitude;
-              var latitude = position.coords.latitude;
-              var longitude = 121.60378;
-              var latitude = 31.206696;
-              that.axios.get('position/gps', {
-                params: {
-                  latitude: latitude,
-                  longitude: longitude
-                }
-              }).then((response) => {
-                // console.log(response.data.data.formatted_address)
+          var id=this.$router.currentRoute.params.id;
+            this.axios.get('topic/'+id,{}).then((response) => {
+                this.topic=response.data.data
               });
-
-            },
-            function (e) {
-              var msg = e.code;
-              var dd = e.message;
-              console.log(msg)
-              console.log(dd)
-            }
-          )
-        }
       },
       closeBottomSheet() {
         this.bottomSheet = false
