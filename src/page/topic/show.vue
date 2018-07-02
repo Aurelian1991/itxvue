@@ -8,26 +8,24 @@
     </mu-appbar>
 
     <div class="content">
-          <mu-card v-if="topic">
-          <mu-card-header v-if="item.user"  v-bind:title="item.user.name" v-bind:subTitle="item.created_at">
-            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
-            <mu-flat-button label="关注" style="float:right" />
-          </mu-card-header>
-                    <mu-card-header v-else  title="火星来客" subTitle="sub title">
-            <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
-            <mu-flat-button label="关注" style="float:right" />
-          </mu-card-header>
+      <mu-card v-if="topic">
+        <mu-card-header v-if="topic.user" v-bind:title="topic.user.name" v-bind:subTitle="topic.created_at">
+          <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+          <mu-flat-button label="关注" style="float:right" />
+        </mu-card-header>
+        <mu-card-header v-else title="火星来客" subTitle="sub title">
+          <mu-avatar src="https://placeimg.com/244/132/any?id=42" slot="avatar" />
+          <mu-flat-button label="关注" style="float:right" />
+        </mu-card-header>
 
-        <!-- <mu-card-text>
-          {{item.content}}
-        </mu-card-text> -->
-          <mu-content-block @click.native="goDetail(item.id)">
-          {{item.content}}
+
+        <mu-content-block>
+          {{topic.content}}
         </mu-content-block>
         <!-- <mu-card-media title="Image Title" subTitle="Image Sub Title"> -->
         <mu-flexbox class="">
-          <mu-flexbox-item  v-if="item.picture"   v-for="(pic, ind) in item.picture" :key="ind" class="">
-            <img v-lazy="pic"  />
+          <mu-flexbox-item v-if="topic.picture" v-for="(pic, ind) in topic.picture" :key="ind" class="">
+            <img v-lazy="pic" />
           </mu-flexbox-item>
         </mu-flexbox>
         <!-- </mu-card-media> -->
@@ -40,7 +38,9 @@
               <mu-flat-button label="文字在前面" class="action-flat-button" icon="favorite_border" />
             </mu-flexbox-item>
             <mu-flexbox-item class="flex-demo">
-              <mu-flat-button v-bind:label="item.comment_num.toFixed()" class="action-flat-button" icon="chat" />
+              <mu-flat-button v-if="topic.comment_num" v-bind:label="topic.comment_num.toFixed()" class="action-flat-button" icon="chat"
+              />
+              <mu-flat-button v-else label=0 class="action-flat-button" icon="chat" />
             </mu-flexbox-item>
             <mu-flexbox-item class="flex-demo">
               <mu-flat-button class="action-flat-button" icon="open_in_new" />
@@ -49,60 +49,9 @@
         </mu-card-actions>
       </mu-card>
     </div>
-    <mu-chip v-for="(item,index) in fileList" :key="item.name" class="chip" @delete="handleClose(index)" showDelete>
-      <img :src=item.url>
-    </mu-chip>
+      <comment></comment>
 
-    <div class="add_button">
-      <vue-core-image-upload class="btn btn-primary" :crop="false" @imageuploaded="imageUploded" :max-file-size="5242880" :multiple="true"
-        :multiple-size="4" url="http://www.vueapi.com/api/upload/pictures">
-        <i class="fa fa-plus fa-2x add" aria-hidden="true"></i>
-      </vue-core-image-upload>
     </div>
-
-
-    <div style="position:absolute;bottom:0px;width:100%; background-color: #181928;">
-      <mu-flexbox>
-        <mu-flexbox-item class="flex-bottom">
-          <mu-icon-button @click="openBottomSheet" icon="sentiment_satisfied_alt">
-            <mu-icon value=":fa :fa-smile-o" class="fa-smile-o" aria-hidden="true" color="#00e676"></mu-icon>
-          </mu-icon-button>
-        </mu-flexbox-item>
-        <mu-flexbox-item class="flex-bottom">
-          <mu-icon-button @click="openBottomSheet" icon="sentiment_satisfied_alt">
-            <mu-icon value=":fa :fa-hashtag" class="fa-hashtag" aria-hidden="true" color="#00e676"></mu-icon>
-          </mu-icon-button>
-        </mu-flexbox-item>
-        <mu-flexbox-item class="flex-bottom">
-          <mu-icon-button @click="openBottomSheet" icon="sentiment_satisfied_alt">
-            <mu-icon value=":fa :fa-tag" class="fa-tag" aria-hidden="true" color="#00e676"></mu-icon>
-          </mu-icon-button>
-        </mu-flexbox-item>
-        <mu-flexbox-item class="flex-bottom">
-          <mu-icon-button @click="openBottomSheet" icon="sentiment_satisfied_alt">
-            <mu-icon value=":fa :fa-list-alt" class="fa-list-alt" aria-hidden="true" color="#00e676"></mu-icon>
-          </mu-icon-button>
-        </mu-flexbox-item>
-        <mu-flexbox-item class="flex-bottom">
-          <mu-icon-button @click="openBottomSheet" icon="sentiment_satisfied_alt">
-            <mu-icon value=":fa :fa-sun-o" class="fa-sun-o" aria-hidden="true" color="#00e676"></mu-icon>
-          </mu-icon-button>
-        </mu-flexbox-item>
-      </mu-flexbox>
-
-      <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet">
-        <mu-list @itemClick="closeBottomSheet">
-          <mu-sub-header>
-            请选择一个
-          </mu-sub-header>
-          <mu-list-item title="阴阳师" />
-          <mu-list-item title="贪吃蛇大作战" />
-          <mu-list-item title="一划到底" />
-          <mu-list-item title="全民斗地主" />
-        </mu-list>
-      </mu-bottom-sheet>
-    </div>
-  </div>
 
 </template>
 <style lang="less" scoped>
@@ -111,13 +60,16 @@
 </style>
 <script>
   import VueCoreImageUpload from 'vue-core-image-upload'
+  import comment from '@/components/comment'
   export default {
     components: {
       VueCoreImageUpload,
+      comment,
     },
     data() {
       return {
         topic: {},
+        comments: [],
         bottomSheet: false,
       };
     },
@@ -135,10 +87,10 @@
         this.fileList.splice(index, 1);
       },
       init() {
-          var id=this.$router.currentRoute.params.id;
-            this.axios.get('topic/'+id,{}).then((response) => {
-                this.topic=response.data.data
-              });
+        var id = this.$router.currentRoute.params.id;
+        this.axios.get('topic/' + id, {}).then((response) => {
+          this.topic = response.data.data
+        });
       },
       closeBottomSheet() {
         this.bottomSheet = false
@@ -166,17 +118,17 @@
   .mu-appbar {
     color: #e0e0e0;
   }
+
   .mu-text-field {
-    font-size: 16px;
-    // width: 256px;
+    font-size: 16px; // width: 256px;
     min-height: 48px;
     display: inline-block;
     max-height: 500px;
     position: relative;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
     margin-bottom: 8px;
     overflow-y: scroll;
-}
+  }
 
   .mu-text-field-input {
     // color: #e0e0e0;
@@ -184,6 +136,7 @@
     color: #bdbdbd;
 
   }
+
   .container {
     position: absolute;
     top: 0px;
