@@ -20,12 +20,7 @@
         <i class="fa fa-plus fa-2x add" aria-hidden="true"></i>
       </vue-core-image-upload>
     </div>
-1
-2
-3
-4
-5
-6
+
 
     <div style="position:absolute;bottom:0px;width:100%; background-color: #181928;">
       <mu-flexbox>
