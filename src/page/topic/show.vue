@@ -110,7 +110,10 @@
 
 </script>
 <style lang="less">
-
+  img {
+    max-width: 100px;
+    max-height: 200px;
+  }
 
 </style>
 
@@ -158,10 +161,7 @@
     margin: 0px 5px;
   }
 
-  img {
-    max-width: 100px;
-    max-height: 200px;
-  }
+
 
   .add_button {
     border: solid 1px;

@@ -11,9 +11,11 @@ import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 import querystring from 'querystring'
 import VueLazyload from 'vue-lazyload'
+import VueCarousel from 'vue-carousel';
 
 Vue.use(MuseUI)
 Vue.use(VueAxios, axios)
+Vue.use(VueCarousel);
 Vue.use(VueLazyload,{
   loading: 'http://image.heitem.com/timg.gif'
 })
